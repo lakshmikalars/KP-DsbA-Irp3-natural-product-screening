@@ -338,7 +338,8 @@ DsbA-Irp3-virtual-screening/
 │   │   └── prepared/
 │   │
 │   └── irp3/
-│       └── colabfold/
+│       ├── colabfold/
+|       └── prepared/       
 │
 ├── LICENSE
 │
