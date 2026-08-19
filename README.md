@@ -339,7 +339,7 @@ DsbA-Irp3-virtual-screening/
 │   │
 │   └── irp3/
 │       └── colabfold/
-││
+│
 ├── LICENSE
 │
 └── README.md
