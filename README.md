@@ -328,6 +328,10 @@ DsbA-Irp3-virtual-screening/
 │       ├── kp_tier1_candidates.txt
 │       └── final_2_targets.fasta
 │
+├── structure_validation/
+│   ├── dsba_ramachandran.png
+│   └── irp3_ramachandran.png
+|
 ├── structures/
 │   ├── dsba/
 │   │   ├── colabfold/
@@ -335,10 +339,6 @@ DsbA-Irp3-virtual-screening/
 │   │
 │   └── irp3/
 │       └── colabfold/
-│
-├── structure_validation/
-│   ├── dsba_ramachandran.png
-│   └── irp3_ramachandran.png
 │
 ├── LICENSE
 │
