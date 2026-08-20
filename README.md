@@ -1,4 +1,4 @@
-# Natural Product Screening Against DsbA and Irp3 in *Klebsiella pneumoniae*
+# Antivirulence Target Prioritization and Dual-Target Screening in *Klebsiella pneumoniae*
 
 A computational drug-discovery project screening natural products against two virulence-associated and infection-relevant *Klebsiella pneumoniae* targets: **DsbA** (oxidative protein folding and virulence-factor maturation) and **Irp3** (yersiniabactin siderophore biosynthesis and iron acquisition).
 
