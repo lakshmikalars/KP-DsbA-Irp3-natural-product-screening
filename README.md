@@ -67,7 +67,7 @@ Both models showed high predicted confidence. pLDDT values provide an indication
 
 ### DsbA sequence length discrepancy
 
-The ColabFold-predicted DsbA model was 261 aa, differing from the [CONFIRM: NCBI RefSeq / UniProt — which source?] annotation of 226 aa. SignalP-6.0 (Organism: Other, slow mode) identified a cleavable Sec/SPI signal peptide at the DsbA N-terminus (residues 1–24, cleavage probability 0.98), consistent with a manual von Heijne (-3,-1) rule check. Irp3 was predicted "OTHER" (no signal peptide) with 1.000000 confidence, consistent with its cytoplasmic role in yersiniabactin biosynthesis.
+The ColabFold-predicted DsbA model was 261 aa, differing from the annotation of 226 aa. SignalP-6.0 (Organism: Other, slow mode) identified a cleavable Sec/SPI signal peptide at the DsbA N-terminus (residues 1–24, cleavage probability 0.98), consistent with a manual von Heijne (-3,-1) rule check. Irp3 was predicted "OTHER" (no signal peptide) with 1.000000 confidence, consistent with its cytoplasmic role in yersiniabactin biosynthesis.
 
 Since mature periplasmic DsbA does not retain its signal peptide, the signal peptide was trimmed prior to docking (mature DsbA: residues 25–261, 237 aa). The signal peptide was removed but remaining residues were not renumbered; residue numbers throughout this README therefore refer to the original precursor sequence numbering (e.g. Cys110/Cys113, Tyr112 below correspond directly to residue numbers in the prepared structure file).
 
