@@ -248,7 +248,7 @@ Therefore, raw docking-score correlation was not interpreted as evidence that th
 To reduce the influence of molecular size, ligand efficiency (LE) was calculated as:
 
 ```text
-LE = -docking affinity / heavy-atom count
+LE = -9docking affinity) / heavy-atom count
 ```
 
 The mean ligand efficiency across both targets was used for comparative prioritization.
