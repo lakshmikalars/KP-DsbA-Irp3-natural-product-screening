@@ -65,33 +65,68 @@ ColabFold was consequently used for both targets.
 
 Both models showed high predicted confidence. pLDDT values provide an indication of predicted local structural confidence, while pTM provides an estimate of global structural confidence.
 
+### DsbA sequence length discrepancy
+
+The ColabFold-predicted DsbA model was 261 aa, differing from the [CONFIRM: NCBI RefSeq / UniProt — which source?] annotation of 226 aa. SignalP-6.0 (Organism: Other, slow mode) identified a cleavable Sec/SPI signal peptide at the DsbA N-terminus (residues 1–24, cleavage probability 0.98), consistent with a manual von Heijne (-3,-1) rule check. Irp3 was predicted "OTHER" (no signal peptide) with 1.000000 confidence, consistent with its cytoplasmic role in yersiniabactin biosynthesis.
+
+Since mature periplasmic DsbA does not retain its signal peptide, the signal peptide was trimmed prior to docking (mature DsbA: residues 25–261, 237 aa). The signal peptide was removed but remaining residues were not renumbered; residue numbers throughout this README therefore refer to the original precursor sequence numbering (e.g. Cys110/Cys113, Tyr112 below correspond directly to residue numbers in the prepared structure file).
+
+SignalP prediction plots and result files are provided in `structure_validation/`.
+
 The predicted structures and associated PAE/pLDDT outputs are provided in the `structures/` directory.
 
 ---
 
 ## 3. Structure Validation and Active-Site Assessment
 
-The predicted models were assessed using **Ramachandran analysis** to evaluate backbone φ/ψ torsion-angle distributions.
+The predicted models were assessed using **Ramachandran analysis** (SWISS-MODEL Structure Assessment) to evaluate backbone φ/ψ torsion-angle distributions. For DsbA, this was performed both before and after signal-peptide trimming:
+
+| | Before trimming (261 aa) | After trimming (237 aa) |
+|---|---|---|
+| Ramachandran favored | 90.35% | **97.87%** |
+| Ramachandran outliers | 8.11% | **0.85%** |
+| MolProbity score | 2.35 | **1.34** |
+| Clashscore | 7.16 | 5.63 |
+| QMEAN4 z-score | -2.258 | **+1.419** |
+
+26 of 28 bond-angle outliers in the untrimmed model localized to residues 1–30 — the signal peptide region — providing structural-quality evidence supporting the trimming decision, in addition to the biological rationale described in Section 2.
+
+For Irp3 (confirmed signal-peptide-free by SignalP): Ramachandran favored 95.05%, outliers 1.65%, MolProbity score 2.14, clashscore 20.11 (scattered rather than localized; not re-assessed after PyRx energy minimization), QMEAN4 z-score +0.321. Verdict: passes, no trimming needed.
 
 The corresponding validation plots are provided in:
 
 ```text
 structure_validation/
-├── dsba_ramachandran.png
-└── irp3_ramachandran.png
+├── dsba_ramachandran_before_trim.png
+├── dsba_ramachandran_after_trim.png
+├── irp3_ramachandran.png
+├── dsba_signalp_plot.png
+├── irp3_signalp_plot.png
+├── dsba_signalp_results.txt
+└── irp3_signalp_results.txt
 ```
+
+### Protein Preparation
+
+Discovery Studio Visualizer (free version) was used for hydrogen addition and geometry cleanup, since the paid-only "Prepare/Clean Protein" tools were unavailable. Atom counts were used to confirm Clean Geometry made only positional adjustments (no atom loss): DsbA 3,557 atoms (1,777 H), Irp3 5,720 atoms (2,841 H). Energy minimization was deferred to PyRx, performed automatically during receptor preparation.
+
+Final prepared structures:
+- `DsbA_prepped.pdb` (mature DsbA, residues 25–261)
+- `irp3_prepped.pdb`
 
 Binding pockets were subsequently evaluated using CASTpFold and cross-checked against functional residues, sequence information, and available structural literature.
 
 ### DsbA
 
-The dominant CASTpFold pocket was approximately 723 Å² and included residues near the catalytic Cys110/Cys113 motif, including Tyr112.
+The catalytic CXXC motif (Cys110-Val111-Tyr112-Cys113) was identified directly from sequence and confirmed present and structurally unaffected by trimming. The dominant CASTpFold pocket was approximately 723 Å² and included residues near this motif, including Tyr112. Full pocket-lining residue set: 62, 65, 66, 69, 70, 73, 112, 219–225, 242, 244–246.
 
 The final docking grid was defined using the centroid of Cα atoms of selected pocket-lining residues.
 
 ### Irp3
 
-The Irp3 pocket was evaluated using available structural literature, sequence alignment, and CASTpFold analysis. Because the larger predicted surface also contains residues associated with protein-protein/NRPS interactions, docking was focused on a smaller functionally relevant region surrounding Tyr129 rather than the entire predicted surface.
+Irp3 is a thiazolinyl imine reductase (Irp3/YbtU) in the yersiniabactin pathway. Meneely & Lamb (2016, PDB 5KVS) identify Tyr128 (*Y. enterocolitica* numbering) as the catalytic general acid. Pairwise alignment (Biopython) between the *K. pneumoniae* and *Y. enterocolitica* sequences revealed a +1 residue offset (extra N-terminal Met in the KP model), mapping the catalytic residue to Tyr129 in this structure — confirmed directly (residue 129 = TYR).
+
+The Irp3 pocket was evaluated using available structural literature, sequence alignment, and CASTpFold analysis. CASTpFold identified the dominant pocket (~4,695 Å²) including Tyr129, alongside residues 17, 18, 21, 74–80, 101–103, 162–166, and others. Because this larger predicted surface also reflects NRPS-module-binding interactions rather than a compact small-molecule site, docking was focused on a smaller, functionally relevant region: residues 17, 18, 21, 101–103, 128–129, 162–166.
 
 The final grid-box coordinates are provided in:
 
@@ -329,8 +364,13 @@ DsbA-Irp3-virtual-screening/
 │       └── final_2_targets.fasta
 │
 ├── structure_validation/
-│   ├── dsba_ramachandran.png
-│   └── irp3_ramachandran.png
+│   ├── dsba_ramachandran_before_trim.png
+│   ├── dsba_ramachandran_after_trim.png
+│   ├── irp3_ramachandran.png
+│   ├── dsba_signalp_plot.png
+│   ├── irp3_signalp_plot.png
+│   ├── dsba_signalp_results.txt
+│   └── irp3_signalp_results.txt
 |
 ├── structures/
 │   ├── dsba/
