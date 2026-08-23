@@ -79,7 +79,9 @@ The predicted structures and associated PAE/pLDDT outputs are provided in the `s
 
 ## 3. Structure Validation and Active-Site Assessment
 
-The predicted models were assessed using **Ramachandran analysis** (SWISS-MODEL Structure Assessment) to evaluate backbone φ/ψ torsion-angle distributions. For DsbA, this was performed both before and after signal-peptide trimming:
+The predicted models were assessed using **Ramachandran analysis** (SWISS-MODEL Structure Assessment) to evaluate backbone φ/ψ torsion-angle distributions. 
+
+For DsbA, this was performed both before and after signal-peptide trimming:
 
 | | Before trimming (261 aa) | After trimming (237 aa) |
 |---|---|---|
