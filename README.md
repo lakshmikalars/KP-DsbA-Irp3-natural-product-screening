@@ -279,8 +279,6 @@ The 19 dual-target candidates were evaluated using:
 
 Drug-likeness, pharmacokinetic characteristics, and toxicity-related endpoints were evaluated together.
 
-Toxicity-related endpoints from pkCSM and ProTox-3 were evaluated alongside SwissADME drug-likeness and pharmacokinetic properties.
-
 The baseline filtering criteria included:
 
 - no predicted AMES mutagenicity
